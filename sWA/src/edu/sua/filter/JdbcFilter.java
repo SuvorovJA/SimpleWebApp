@@ -64,6 +64,7 @@ public class JdbcFilter implements Filter {
 			} catch (SQLException e) {
 				if (e.getCause() instanceof ConnectException) {
 					sctx.log("JDBC Filter: DB Server Connection refused. " + e.getCause());
+					// TODO make redirect to JSP with err msg
 				} else {
 					sctx.log("JDBC Filter: SQL Exception, rollback transaction. " + e.getCause());
 					ConnectionUtils.rollbackQuietly(conn);
