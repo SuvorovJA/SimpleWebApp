@@ -19,6 +19,7 @@
 	<b>It includes the following functions:</b>
 	<ul>
 		<li>Maven driven source code project</li>
+		<li>Tomcat jdbc connection pool</li>
 		<li>Login by credentials from database</li>
 		<li>Storing user information in cookies</li>
 		<li>Product List</li>
