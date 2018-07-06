@@ -2,7 +2,8 @@ This project contain simple web application for Tomcat server.
 Project initially based on the tutorial from o7planing and used: eclipse ide oxygen, tomcat 8.5 (tgz installation), H2 embeddable RDBMS; JavaSE/EE: jdbc, jsp, jstl, servlet, filter
 
 ### Database: 
-* in initial version of project: Used external running H2 in tcp-server mode.
+* in current version: connections handled by Tomcat Jdbc Pool, so, connection params moved from H2ConnUtils.java to META-INF/context.xml. Other corresponding changes see in commit 3575331.
+* REWRITED: in initial version of project: Used external running H2 in tcp-server mode.
   - run DB example `java -jar WEB-INF/lib/h2-1.4.195.jar`
   - default connections parameters placed in H2ConnUtils.java  
   - DB schema and demo-content placed in SQL.txt, apply that in H2 Console before.
