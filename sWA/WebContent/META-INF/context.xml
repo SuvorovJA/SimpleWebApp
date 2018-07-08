@@ -24,12 +24,18 @@
 		maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="javauser" password="javadude" 
 		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/javatest"/> -->
 
+
+	<Parameter name="H2_SCRIPT_DIRECTORY"
+		value="WEB-INF/lib" override="false" />
+
 	<Resource name="jdbc/sWA" auth="Container"
 		type="javax.sql.DataSource" maxTotal="10" maxIdle="3"
 		maxWaitMillis="2000" username="sa" password=""
 		driverClassName="org.h2.Driver" jmxEnabled="true"
 		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
-		url="jdbc:h2:tcp://localhost/./sWA" />
+		url="jdbc:h2:mem:sWA;DB_CLOSE_DELAY=-1;" />
 
+	<!-- url="jdbc:h2:tcp://localhost/./sWA" --><!-- use for external tcp server db -->
+	<!-- INIT=runscript from 'SQL.txt' --><!-- this not work with relative path -->
 
 </Context>

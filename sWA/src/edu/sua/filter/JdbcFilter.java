@@ -51,6 +51,9 @@ public class JdbcFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 
+		//		ClassPathPrint.main(null);
+		//		System.out.println(">>> SysProperties.getScriptDirectory = " + SysProperties.getScriptDirectory());
+		
 		if (UtilsFilter.needJdbc(req)) {
 
 			Connection conn = null;
@@ -66,7 +69,7 @@ public class JdbcFilter implements Filter {
 					sctx.log("JDBC Filter: DB Server Connection refused. " + e.getCause());
 					// TODO make redirect to JSP with err msg
 				} else {
-					sctx.log("JDBC Filter: SQL Exception, rollback transaction. " + e.getCause());
+					sctx.log("JDBC Filter: SQL Exception, rollback transaction. " + e.getMessage());
 					ConnectionUtils.rollbackQuietly(conn);
 				}
 				return;

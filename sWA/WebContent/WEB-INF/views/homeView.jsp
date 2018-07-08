@@ -20,6 +20,7 @@
 	<ul>
 		<li>Maven driven source code project</li>
 		<li>Tomcat jdbc connection pool</li>
+		<li>Embedded in-memory database H2 with SQL Console</li>
 		<li>Login by credentials from database</li>
 		<li>Storing user information in cookies</li>
 		<li>Product List</li>
