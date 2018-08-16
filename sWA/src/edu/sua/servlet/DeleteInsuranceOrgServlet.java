@@ -12,21 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.sua.beans.UserAccount;
+import edu.sua.entities.UserAccount;
 import edu.sua.utils.Utils;
 import edu.sua.utils.UtilsDAO;
 
 /**
- * Servlet implementation class DeleteProductServlet
+ * Servlet implementation class DeleteInsuranceOrgServlet
  */
-@WebServlet(urlPatterns = { "/deleteProduct" })
-public class DeleteProductServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/deleteInsuranceOrg" })
+public class DeleteInsuranceOrgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DeleteProductServlet() {
+	public DeleteInsuranceOrgServlet() {
 		super();
 	}
 
@@ -49,7 +49,7 @@ public class DeleteProductServlet extends HttpServlet {
 		String code = (String) request.getParameter("code");
 		String errorString = null;
 		try {
-			UtilsDAO.deleteProduct(conn, code);
+			UtilsDAO.deleteInsuranceOrg(conn, code);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
@@ -59,10 +59,10 @@ public class DeleteProductServlet extends HttpServlet {
 		if (errorString != null) {
 			request.setAttribute("errorString", errorString);
 			RequestDispatcher dispatcher = request.getServletContext()
-					.getRequestDispatcher("/WEB-INF/views/deleteProductErrorView.jsp");
+					.getRequestDispatcher("/WEB-INF/views/deleteInsuranceOrgView.jsp");
 			dispatcher.forward(request, response);
 		} else {
-			response.sendRedirect(request.getContextPath() + "/productList");
+			response.sendRedirect(request.getContextPath() + "/insuranceOrgsList");
 		}
 	}
 

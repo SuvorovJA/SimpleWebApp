@@ -12,22 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.sua.beans.Product;
-import edu.sua.beans.UserAccount;
+import edu.sua.entities.InsuranceOrg;
+import edu.sua.entities.UserAccount;
 import edu.sua.utils.Utils;
 import edu.sua.utils.UtilsDAO;
 
 /**
- * Servlet implementation class EditProductServlet
+ * Servlet implementation class EditInsuranceOrgServlet
  */
-@WebServlet(urlPatterns = { "/editProduct" })
-public class EditProductServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/editInsuranceOrg" })
+public class EditInsuranceOrgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public EditProductServlet() {
+	public EditInsuranceOrgServlet() {
 		super();
 	}
 
@@ -48,28 +48,28 @@ public class EditProductServlet extends HttpServlet {
 		
 		Connection conn = Utils.getStoredConnection(request);
 		String code = (String) request.getParameter("code");
-		Product product = null;
+		InsuranceOrg insuranceOrg = null;
 		String errorString = null;
 
 		try {
-			product = UtilsDAO.findProduct(conn, code);
+			insuranceOrg = UtilsDAO.findInsuranceOrg(conn, code);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
 		}
 
-		// If The product does not exist to edit. Redirect to productList page.
-		if (errorString != null && product == null) {
-			response.sendRedirect(request.getServletPath() + "/productList");
+		// If The InsuranceOrg does not exist to edit. Redirect to insuranceOrgsList page.
+		if (errorString != null && insuranceOrg == null) {
+			response.sendRedirect(request.getServletPath() + "/insuranceOrgsList");
 			return;
 		}
 
 		// Store errorString in request attribute, before forward to views.
 		request.setAttribute("errorString", errorString);
-		request.setAttribute("product", product);
+		request.setAttribute("insuranceOrg", insuranceOrg);
 
 		RequestDispatcher dispatcher = request.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/editProductView.jsp");
+				.getRequestDispatcher("/WEB-INF/views/editInsuranceOrgView.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -92,10 +92,10 @@ public class EditProductServlet extends HttpServlet {
 		} catch (Exception e) {
 			errorString = "Product Price invalid! (must be number)";
 		}
-		Product product = new Product(code, name, price);
+		InsuranceOrg insuranceOrg = new InsuranceOrg(code, name, price);
 
 		try {
-			UtilsDAO.updateProduct(conn, product);
+			UtilsDAO.updateInsuranceOrg(conn, insuranceOrg);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
@@ -103,15 +103,15 @@ public class EditProductServlet extends HttpServlet {
 
 		// Store infomation to request attribute, before forward to views.
 		request.setAttribute("errorString", errorString);
-		request.setAttribute("product", product);
+		request.setAttribute("insuranceOrg", insuranceOrg);
 
 		// If error, forward to Edit page.
 		if (errorString != null) {
 			RequestDispatcher dispatcher = request.getServletContext()
-					.getRequestDispatcher("/WEB-INF/views/editProductView.jsp");
+					.getRequestDispatcher("/WEB-INF/views/editInsuranceOrgView.jsp");
 			dispatcher.forward(request, response);
 		} else {
-			response.sendRedirect(request.getContextPath() + "/productList");
+			response.sendRedirect(request.getContextPath() + "/insuranceOrgsList");
 		}
 	}
 }

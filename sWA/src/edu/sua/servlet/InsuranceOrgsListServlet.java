@@ -12,21 +12,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.sua.beans.Product;
+import edu.sua.entities.InsuranceOrg;
 import edu.sua.utils.Utils;
 import edu.sua.utils.UtilsDAO;
 
 /**
- * Servlet implementation class ProductListServlet
+ * Servlet implementation class InsuranceOrgsListServlet
  */
-@WebServlet(urlPatterns = { "/productList" })
-public class ProductListServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/insuranceOrgsList" })
+public class InsuranceOrgsListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ProductListServlet() {
+	public InsuranceOrgsListServlet() {
 		super();
 	}
 
@@ -39,19 +39,19 @@ public class ProductListServlet extends HttpServlet {
 		Connection conn = Utils.getStoredConnection(request);
 
 		String errorString = null;
-		List<Product> list = null;
+		List<InsuranceOrg> list = null;
 		try {
-			list = UtilsDAO.queryProduct(conn);
+			list = UtilsDAO.queryInsuranceOrg(conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
 		}
 		// Store info in request attribute, before forward to views
 		request.setAttribute("errorString", errorString);
-		request.setAttribute("productList", list);
+		request.setAttribute("insuranceOrgsList", list);
 
 		RequestDispatcher dispatcher = request.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/productListView.jsp");
+				.getRequestDispatcher("/WEB-INF/views/insuranceOrgsListView.jsp");
 		dispatcher.forward(request, response);
 	}
 

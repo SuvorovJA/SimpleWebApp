@@ -1,16 +1,16 @@
-package edu.sua.beans;
+package edu.sua.entities;
 
-public class Product {
+public class InsuranceOrg {
 	private String code;
 	private String name;
 	private float price;
 
-	public Product() {
+	public InsuranceOrg() {
 		// super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(String code, String name, float price) {
+	public InsuranceOrg(String code, String name, float price) {
 		// super();
 		this.code = code;
 		this.name = name;

@@ -5,37 +5,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageContext.request.contextPath}: Edit Product</title>
+<title>${pageContext.request.contextPath}: Edit Insurance Organisation</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/test.css"></link>
 </head>
 <body>
 	<jsp:include page="_header.jsp"></jsp:include>
 	<jsp:include page="_menu.jsp"></jsp:include>
 
-	<h3>Edit Product</h3>
+	<h3>Edit Insurance Organisation</h3>
 
 	<p style="color: red;">${errorString}</p>
 
-	<c:if test="${not empty product}">
+	<c:if test="${not empty insuranceOrg}">
 		<form method="POST"
-			action="${pageContext.request.contextPath}/editProduct">
-			<input type="hidden" name="code" value="${product.code}" />
+			action="${pageContext.request.contextPath}/editInsuranceOrg">
+			<input type="hidden" name="code" value="${insuranceOrg.code}" />
 			<table border="0">
 				<tr>
 					<td>Code</td>
-					<td style="color: red;">${product.code}</td>
+					<td style="color: red;">${insuranceOrg.code}</td>
 				</tr>
 				<tr>
 					<td>Name</td>
-					<td><input type="text" name="name" value="${product.name}" /></td>
+					<td><input type="text" name="name" value="${insuranceOrg.name}" /></td>
 				</tr>
 				<tr>
 					<td>Price</td>
-					<td><input type="text" name="price" value="${product.price}" /></td>
+					<td><input type="text" name="price" value="${insuranceOrg.price}" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="Submit" /> <a
-						href="${pageContext.request.contextPath}/productList">Cancel</a></td>
+						href="${pageContext.request.contextPath}/insuranceOrgsList">Cancel</a></td>
 				</tr>
 			</table>
 		</form>

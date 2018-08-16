@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 
 <div  class="footer"> 
-  *******
+  *** Suvorov J.A. ***
 </div>

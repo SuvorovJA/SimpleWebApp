@@ -1,4 +1,4 @@
-package edu.sua.beans;
+package edu.sua.entities;
 
 public class UserAccount {
 	public static final String GENDER_MALE = "M";

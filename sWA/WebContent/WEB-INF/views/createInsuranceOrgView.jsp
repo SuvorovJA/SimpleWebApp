@@ -5,35 +5,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageContext.request.contextPath}: Create Product</title>
+<title>${pageContext.request.contextPath}: Create Insurance Organisation</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/test.css"></link>
 </head>
 <body>
 	<jsp:include page="_header.jsp"></jsp:include>
 	<jsp:include page="_menu.jsp"></jsp:include>
 
-	<h3>Create Product</h3>
+	<h3>Create Insurance Organisation</h3>
 
 	<p style="color: red;">${errorString}</p>
 
 	<form method="POST"
-		action="${pageContext.request.contextPath}/createProduct">
+		action="${pageContext.request.contextPath}/createInsuranceOrg">
 		<table border="0">
 			<tr>
 				<td>Code</td>
-				<td><input type="text" name="code" value="${product.code}" /></td>
+				<td><input type="text" name="code" value="${insuranceorg.code}" /></td>
 			</tr>
 			<tr>
 				<td>Name</td>
-				<td><input type="text" name="name" value="${product.name}" /></td>
+				<td><input type="text" name="name" value="${insuranceorg.name}" /></td>
 			</tr>
 			<tr>
 				<td>Price</td>
-				<td><input type="text" name="price" value="${product.price}" /></td>
+				<td><input type="text" name="price" value="${insuranceorg.price}" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Submit" /> <a
-					href="productList">Cancel</a></td>
+					href="insuranceOrgsList">Cancel</a></td>
 			</tr>
 		</table>
 	</form>
