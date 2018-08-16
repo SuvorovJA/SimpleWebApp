@@ -5,14 +5,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageContext.request.contextPath}: Create Insurance Organisation</title>
+<title>${pageContext.request.contextPath}: Создание страховой организации</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/test.css"></link>
 </head>
 <body>
 	<jsp:include page="_header.jsp"></jsp:include>
 	<jsp:include page="_menu.jsp"></jsp:include>
 
-	<h3>Create Insurance Organisation</h3>
+	<h3>Создание страховой организации</h3>
 
 	<p style="color: red;">${errorString}</p>
 
@@ -36,8 +36,8 @@
 				<td><input type="text" name="address" value="${insuranceorg.address}" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Submit" /> <a
-					href="insuranceOrgsList">Cancel</a></td>
+				<td colspan="2"><input type="submit" value="Сохранить" /> <a
+					href="insuranceOrgsList">Отмена</a></td>
 			</tr>
 		</table>
 	</form>

@@ -4,29 +4,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageContext.request.contextPath}: Home Page</title>
+<title>${pageContext.request.contextPath}: Информация о страховых организациях</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/test.css"></link>
 </head>
 <body>
 	<jsp:include page="_header.jsp"></jsp:include>
 	<jsp:include page="_menu.jsp"></jsp:include>
 
-	<h3>Home Page</h3>
+	<h3>Readme</h3>
 
-	This is demo Simple webapp using jsp,servlet &amp; Jdbc.
+	Приложение представляющее из себя веб-форму заполнения полей справочника "информация о страховых организациях": ИНН, ОГРН, Полное наименование, адрес. 
 	<br>
 	<br>
-	<b>It includes the following functions:</b>
+	<b></b>
 	<ul>
-		<li>Maven driven source-code project</li>
-		<li>Tomcat jdbc connection pool</li>
-		<li>Embedded in-memory database H2 with SQL Console</li>
-		<li>Login by credentials from database</li>
-		<li>Storing user information in cookies</li>
-		<li>Product List</li>
-		<li>Create Product</li>
-		<li>Edit Product</li>
-		<li>Delete Product</li>
+		<li>Исходный код управляется Maven</li>
+		<li>Использованы jsp,servlet &amp; Jdbc</li>
+		<li>Tomcat jdbc connection pool, с просмотром параметров пула из приложения</li>
+		<li>Встроенная in-memory база данных H2 со ссылкой на  SQL консоль из приложения </li>
+		<li>Список организаций</li>
+		<li>Создание новой организации</li>
+		<li>Изменение и Удаление организации</li>
+		<li>Валидация значений минимальная, по факту не реализована</li>
 	</ul>
 
 	<jsp:include page="_footer.jsp"></jsp:include>

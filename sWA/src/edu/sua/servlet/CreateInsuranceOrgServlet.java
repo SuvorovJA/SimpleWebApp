@@ -55,28 +55,20 @@ public class CreateInsuranceOrgServlet extends HttpServlet {
 		try {
 			inn = Long.valueOf((String) request.getParameter("inn"));
 		} catch (NumberFormatException e) {
-			errorString = "InsuranceOrg INN invalid! (must be number)";
+			errorString = "ИНН должен быть числом";
 		}
 		try {
 			ogrn = Long.valueOf((String) request.getParameter("ogrn"));
 		} catch (NumberFormatException e) {
-			errorString = "InsuranceOrg OGRN invalid! (must be number)";
+			errorString = "ОГРН должен быть числом";
 		}
 		String name = (String) request.getParameter("name");
 		String address = (String) request.getParameter("address");
 
-		// try {
-		// price = Float.parseFloat(priceStr);
-		// } catch (Exception e) {
-		// errorString = "InsuranceOrg Price invalid! (must be number)";
-		// }
-
 		InsuranceOrg insuranceOrg = new InsuranceOrg(inn, ogrn, name, address);
 
-		// String regex = "\\w+";
-		// if (inn == 0 || !inn.matches(regex)) {
 		if (inn == 0) {
-			errorString = "InsuranceOrg INN invalid! (must be numeric > 0)";
+			errorString = "ИНН должен быть числом > 0";
 		}
 
 		if (errorString == null) {

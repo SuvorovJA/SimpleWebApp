@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageContext.request.contextPath}: информация о страховых организациях</title>
+<title>${pageContext.request.contextPath}: Информация о страховых организациях</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/test.css"></link>
 </head>
 <body>
 	<jsp:include page="_header.jsp"></jsp:include>
 	<jsp:include page="_menu.jsp"></jsp:include>
 
-	<h3>информация о страховых организациях</h3>
+	<h3>Информация о страховых организациях</h3>
 
 	<p style="color: red;">${errorString}</p>
 
@@ -38,7 +38,7 @@
 		</c:forEach>
 	</table>
 
-	<p><a href="createInsuranceOrg">Create Insurance Organisation</a>
+	<p><a href="createInsuranceOrg">Добавить страховую организацию</a>
 
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>

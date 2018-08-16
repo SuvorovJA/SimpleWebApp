@@ -5,17 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageContext.request.contextPath}: Delete Insurance Organisation</title>
+<title>${pageContext.request.contextPath}: Удаление страховой организации</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/test.css"></link>
 </head>
 <body>
 	<jsp:include page="_header.jsp"></jsp:include>
 	<jsp:include page="_menu.jsp"></jsp:include>
 
-	<h3>Delete Insurance Organisation</h3>
+	<h3>Удаление страховой организации</h3>
 
 	<p style="color: red;">${errorString}</p>
-	<a href="insuranceOrgsList">Insurance Organisation List</a>
+	<a href="insuranceOrgsList">Список страховых организаций</a>
 
 	<jsp:include page="_footer.jsp"></jsp:include>
 

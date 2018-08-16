@@ -3,8 +3,8 @@
 
 <div style="padding: 5px;">
 
-	<a href="${pageContext.request.contextPath}/">Home</a> 
-	| <a href="${pageContext.request.contextPath}/insuranceOrgsList">Organisations List</a>
+	<a href="${pageContext.request.contextPath}/">Домой</a> 
+	| <a href="${pageContext.request.contextPath}/insuranceOrgsList">Список организаций</a>
 	| <a href="${pageContext.request.contextPath}/poolMonitor">*JDBC Pool</a>
 	| <a href="${pageContext.request.contextPath}/console">*H2 SQL Console</a>
 	| <a href="${pageContext.request.contextPath}/userInfo">My Account</a>

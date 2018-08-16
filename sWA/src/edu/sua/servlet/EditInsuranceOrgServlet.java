@@ -47,7 +47,7 @@ public class EditInsuranceOrgServlet extends HttpServlet {
 		}
 		
 		Connection conn = Utils.getStoredConnection(request);
-		long inn =  Long.valueOf((String) request.getParameter("inn"));
+		long inn =  Long.valueOf((String) request.getParameter("inn")); //TODO validating need
 		InsuranceOrg insuranceOrg = null;
 		String errorString = null;
 
@@ -89,21 +89,16 @@ public class EditInsuranceOrgServlet extends HttpServlet {
 		try {
 			inn = Long.valueOf((String) request.getParameter("inn"));
 		} catch (NumberFormatException e) {
-			errorString = "InsuranceOrg INN invalid! (must be number)";
+			errorString = "ИНН должен быть числом";
 		}
 		try {
 			ogrn = Long.valueOf((String) request.getParameter("ogrn"));
 		} catch (NumberFormatException e) {
-			errorString = "InsuranceOrg OGRN invalid! (must be number)";
+			errorString = "ОГРН должен быть числом";
 		}
 		String name = (String) request.getParameter("name");
 		String address = (String) request.getParameter("address");
 		
-//		try {
-//			price = Float.parseFloat(priceStr);
-//		} catch (Exception e) {
-//			errorString = "Product Price invalid! (must be number)";
-//		}
 		InsuranceOrg insuranceOrg = new InsuranceOrg(inn, ogrn, name, address);
 
 		try {
