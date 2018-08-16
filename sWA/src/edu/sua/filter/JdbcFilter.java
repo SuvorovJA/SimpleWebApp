@@ -76,7 +76,7 @@ public class JdbcFilter implements Filter {
 			} catch (Exception e) {
 				e.printStackTrace();
 				sctx.log("JDBC Filter: some other exception");
-				throw new ServletException();
+//				throw new ServletException();
 			} finally {
 				ConnectionUtils.closeQuietly(conn);
 			}

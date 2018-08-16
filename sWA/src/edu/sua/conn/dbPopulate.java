@@ -13,13 +13,13 @@ public class dbPopulate {
 	static {
 		ddl = new ArrayList<>();
 		ddl.add("create table USER_ACCOUNT ( USER_NAME VARCHAR(30) not null, GENDER VARCHAR(1) not null, PASSWORD  VARCHAR(30) not null, primary key (USER_NAME));");
-		ddl.add("create table PRODUCT ( CODE VARCHAR(20) not null, NAME VARCHAR(128) not null, PRICE FLOAT not null, primary key (CODE));");
+		ddl.add("create table INSURANCE_ORGS ( INN BIGINT not null, OGRN BIGINT not null, NAME VARCHAR(128) not null, ADDRESS VARCHAR(128) not null, primary key (INN), unique (OGRN));");
 		
 		dml = new ArrayList<>();
-		dml.add("insert into user_account (USER_NAME, GENDER, PASSWORD) values ('tom', 'M', 'tom001');");
-		dml.add("insert into user_account (USER_NAME, GENDER, PASSWORD) values ('jerry', 'M', 'jerry001');");
-		dml.add("insert into product (CODE, NAME, PRICE) values ('P001', 'Java Core', 100);");
-		dml.add("insert into product (CODE, NAME, PRICE)	values ('P002', 'C# Core', 90);");	
+		dml.add("insert into USER_ACCOUNT (USER_NAME, GENDER, PASSWORD) values ('tom', 'M', 'tom001');");
+		dml.add("insert into USER_ACCOUNT (USER_NAME, GENDER, PASSWORD) values ('jerry', 'M', 'jerry001');");
+		dml.add("insert into INSURANCE_ORGS (INN, OGRN, NAME, ADDRESS) values (111111111111, 1234567890123, 'Общее Страхование', 'Москва, Тверская 1' );");
+		dml.add("insert into INSURANCE_ORGS (INN, OGRN, NAME, ADDRESS) values (222222222222, 2345678901234, 'Частное страховое общество', 'Томск, Тверская 2' );");	
 	}
 
 	public static List<String> getDdl() {

@@ -47,12 +47,12 @@ public class EditInsuranceOrgServlet extends HttpServlet {
 		}
 		
 		Connection conn = Utils.getStoredConnection(request);
-		String code = (String) request.getParameter("code");
+		long inn =  Long.valueOf((String) request.getParameter("inn"));
 		InsuranceOrg insuranceOrg = null;
 		String errorString = null;
 
 		try {
-			insuranceOrg = UtilsDAO.findInsuranceOrg(conn, code);
+			insuranceOrg = UtilsDAO.findInsuranceOrg(conn, inn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
@@ -81,18 +81,30 @@ public class EditInsuranceOrgServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Connection conn = Utils.getStoredConnection(request);
-		String code = (String) request.getParameter("code");
-		String name = (String) request.getParameter("name");
-		String priceStr = (String) request.getParameter("price");
+		Connection conn = Utils.getStoredConnection(request);	
 		String errorString = null;
-		float price = 0;
+		long inn = 0, ogrn = 0;
+
+		// TODO move validating to ext
 		try {
-			price = Float.parseFloat(priceStr);
-		} catch (Exception e) {
-			errorString = "Product Price invalid! (must be number)";
+			inn = Long.valueOf((String) request.getParameter("inn"));
+		} catch (NumberFormatException e) {
+			errorString = "InsuranceOrg INN invalid! (must be number)";
 		}
-		InsuranceOrg insuranceOrg = new InsuranceOrg(code, name, price);
+		try {
+			ogrn = Long.valueOf((String) request.getParameter("ogrn"));
+		} catch (NumberFormatException e) {
+			errorString = "InsuranceOrg OGRN invalid! (must be number)";
+		}
+		String name = (String) request.getParameter("name");
+		String address = (String) request.getParameter("address");
+		
+//		try {
+//			price = Float.parseFloat(priceStr);
+//		} catch (Exception e) {
+//			errorString = "Product Price invalid! (must be number)";
+//		}
+		InsuranceOrg insuranceOrg = new InsuranceOrg(inn, ogrn, name, address);
 
 		try {
 			UtilsDAO.updateInsuranceOrg(conn, insuranceOrg);

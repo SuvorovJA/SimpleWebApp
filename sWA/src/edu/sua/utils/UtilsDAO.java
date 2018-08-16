@@ -55,69 +55,74 @@ public class UtilsDAO {
 		return null;
 	}
 
-	public static List<InsuranceOrg> queryInsuranceOrg(Connection conn) throws SQLException {
-		String sql = "Select a.Code, a.Name, a.Price from Product a ";
+	public static List<InsuranceOrg> queryInsuranceOrgs(Connection conn) throws SQLException {
+		String sql = "Select a.Inn, a.Ogrn, a.Name, a.Address from Insurance_Orgs a ";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
 
 		List<InsuranceOrg> list = new ArrayList<InsuranceOrg>();
 		while (rs.next()) {
-			String code = rs.getString("Code");
+			long inn = rs.getLong("Inn");
+			long ogrn = rs.getLong("Ogrn");
+			String address = rs.getString("Address");
 			String name = rs.getString("Name");
-			float price = rs.getFloat("Price");
 			//
 			InsuranceOrg insuranceOrg = new InsuranceOrg();
-			insuranceOrg.setCode(code);
+			insuranceOrg.setInn(inn);
 			insuranceOrg.setName(name);
-			insuranceOrg.setPrice(price);
+			insuranceOrg.setAddress(address);
+			insuranceOrg.setOgrn(ogrn);
 			list.add(insuranceOrg);
 		}
 		return list;
 	}
 
-	public static InsuranceOrg findInsuranceOrg(Connection conn, String code) throws SQLException {
-		String sql = "Select a.Code, a.Name, a.Price from Product a where a.Code=?";
+	public static InsuranceOrg findInsuranceOrg(Connection conn, long inn) throws SQLException {
+		String sql = "Select a.Inn, a.Ogrn, a.Name, a.Address from Insurance_Orgs a where a.Inn=?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		pstm.setString(1, code);
+		pstm.setLong(1, inn);
 		ResultSet rs = pstm.executeQuery();
 
 		while (rs.next()) {
+			long ogrn = rs.getLong("Ogrn");
+			String address = rs.getString("Address");
 			String name = rs.getString("Name");
-			float price = rs.getFloat("Price");
 			//
-			InsuranceOrg insuranceOrg = new InsuranceOrg(code, name, price);
+			InsuranceOrg insuranceOrg = new InsuranceOrg(inn, ogrn, name, address);
 			return insuranceOrg;
 		}
 		return null;
 	}
 
 	public static void updateInsuranceOrg(Connection conn, InsuranceOrg insuranceOrg) throws SQLException {
-		String sql = "Update Product set Name =?, Price=? where Code=? ";
+		String sql = "Update Insurance_Orgs set Ogrn = ?, Name =?, Address=? where Inn=? ";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		pstm.setString(1, insuranceOrg.getName());
-		pstm.setFloat(2, insuranceOrg.getPrice());
-		pstm.setString(3, insuranceOrg.getCode());
+		pstm.setLong(1, insuranceOrg.getOgrn());
+		pstm.setString(2, insuranceOrg.getName());
+		pstm.setString(3, insuranceOrg.getAddress());
+		pstm.setLong(4, insuranceOrg.getInn());
 		pstm.executeUpdate();
 	}
 
 	public static void insertInsuranceOrg(Connection conn, InsuranceOrg insuranceOrg) throws SQLException {
-		String sql = "Insert into Product(Code, Name,Price) values (?,?,?)";
+		String sql = "Insert into Insurance_Orgs(Inn, Ogrn, Name, Address) values (?,?,?,?)";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		pstm.setString(1, insuranceOrg.getCode());
-		pstm.setString(2, insuranceOrg.getName());
-		pstm.setFloat(3, insuranceOrg.getPrice());
+		pstm.setLong(1, insuranceOrg.getInn());
+		pstm.setLong(2, insuranceOrg.getOgrn());
+		pstm.setString(3, insuranceOrg.getName());
+		pstm.setString(4, insuranceOrg.getAddress());
 		pstm.executeUpdate();
 	}
 
-	public static void deleteInsuranceOrg(Connection conn, String code) throws SQLException {
-		String sql = "Delete From Product where Code= ?";
+	public static void deleteInsuranceOrg(Connection conn, long inn) throws SQLException {
+		String sql = "Delete From Insurance_Orgs where Inn= ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
-		pstm.setString(1, code);
+		pstm.setLong(1, inn);
 		pstm.executeUpdate();
 	}
 

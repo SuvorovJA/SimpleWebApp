@@ -18,7 +18,7 @@
 	<br>
 	<b>It includes the following functions:</b>
 	<ul>
-		<li>Maven driven source code project</li>
+		<li>Maven driven source-code project</li>
 		<li>Tomcat jdbc connection pool</li>
 		<li>Embedded in-memory database H2 with SQL Console</li>
 		<li>Login by credentials from database</li>

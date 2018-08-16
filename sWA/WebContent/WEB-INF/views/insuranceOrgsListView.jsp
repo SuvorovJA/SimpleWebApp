@@ -6,32 +6,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageContext.request.contextPath}: Insurance Organisations List</title>
+<title>${pageContext.request.contextPath}: информация о страховых организациях</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/test.css"></link>
 </head>
 <body>
 	<jsp:include page="_header.jsp"></jsp:include>
 	<jsp:include page="_menu.jsp"></jsp:include>
 
-	<h3>Insurance Organisations List</h3>
+	<h3>информация о страховых организациях</h3>
 
 	<p style="color: red;">${errorString}</p>
 
 	<table border="1" cellpadding="5" cellspacing="1">
 		<tr>
-			<th>Code</th>
-			<th>Name</th>
-			<th>Price</th>
-			<th>Edit</th>
-			<th>Delete</th>
+			<th>ИНН</th>
+			<th>ОГРН</th>
+			<th>Наименование</th>
+			<th>Адрес</th>
+			<th>Изменить</th>
+			<th>Удалить</th>
 		</tr>
 		<c:forEach items="${insuranceOrgsList}" var="insuranceorg">
 			<tr>
-				<td>${insuranceorg.code}</td>
+				<td>${insuranceorg.inn}</td>
+				<td>${insuranceorg.ogrn}</td>
 				<td>${insuranceorg.name}</td>
-				<td>${insuranceorg.price}</td>
-				<td><a href="editInsuranceOrg?code=${insuranceorg.code}">Edit</a></td>
-				<td><a href="deleteInsuranceOrg?code=${insuranceorg.code}">Delete</a></td>
+				<td>${insuranceorg.address}</td>
+				<td><a href="editInsuranceOrg?inn=${insuranceorg.inn}">Изменить</a></td>
+				<td><a href="deleteInsuranceOrg?inn=${insuranceorg.inn}">Удалить</a></td>
 			</tr>
 		</c:forEach>
 	</table>

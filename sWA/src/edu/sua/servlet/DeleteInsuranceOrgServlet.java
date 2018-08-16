@@ -46,10 +46,10 @@ public class DeleteInsuranceOrgServlet extends HttpServlet {
 		}
 		
 		Connection conn = Utils.getStoredConnection(request);
-		String code = (String) request.getParameter("code");
+		long inn =  Long.valueOf((String) request.getParameter("inn"));
 		String errorString = null;
 		try {
-			UtilsDAO.deleteInsuranceOrg(conn, code);
+			UtilsDAO.deleteInsuranceOrg(conn, inn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();

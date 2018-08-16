@@ -20,16 +20,20 @@
 		action="${pageContext.request.contextPath}/createInsuranceOrg">
 		<table border="0">
 			<tr>
-				<td>Code</td>
-				<td><input type="text" name="code" value="${insuranceorg.code}" /></td>
+				<td>ИНН</td>
+				<td><input type="text" name="inn" value="${insuranceorg.inn}" /></td>
 			</tr>
 			<tr>
-				<td>Name</td>
+				<td>ОГРН</td>
+				<td><input type="text" name="ogrn" value="${insuranceorg.ogrn}" /></td>
+			</tr>
+			<tr>
+				<td>Наименование</td>
 				<td><input type="text" name="name" value="${insuranceorg.name}" /></td>
 			</tr>
 			<tr>
-				<td>Price</td>
-				<td><input type="text" name="price" value="${insuranceorg.price}" /></td>
+				<td>Адрес</td>
+				<td><input type="text" name="address" value="${insuranceorg.address}" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Submit" /> <a

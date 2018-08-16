@@ -50,20 +50,33 @@ public class CreateInsuranceOrgServlet extends HttpServlet {
 
 		Connection conn = Utils.getStoredConnection(request);
 		String errorString = null;
-		String code = (String) request.getParameter("code");
-		String name = (String) request.getParameter("name");
-		String priceStr = (String) request.getParameter("price");
-		float price = 0;
+		long inn = 0, ogrn = 0;
+		// TODO move validating to ext
 		try {
-			price = Float.parseFloat(priceStr);
-		} catch (Exception e) {
-			errorString = "InsuranceOrg Price invalid! (must be number)";
+			inn = Long.valueOf((String) request.getParameter("inn"));
+		} catch (NumberFormatException e) {
+			errorString = "InsuranceOrg INN invalid! (must be number)";
 		}
-		InsuranceOrg insuranceOrg = new InsuranceOrg(code, name, price);
+		try {
+			ogrn = Long.valueOf((String) request.getParameter("ogrn"));
+		} catch (NumberFormatException e) {
+			errorString = "InsuranceOrg OGRN invalid! (must be number)";
+		}
+		String name = (String) request.getParameter("name");
+		String address = (String) request.getParameter("address");
 
-		String regex = "\\w+";
-		if (code == null || !code.matches(regex)) {
-			errorString = "InsuranceOrg Code invalid! (must be literal [a-zA-Z_0-9] with at least 1 character)";
+		// try {
+		// price = Float.parseFloat(priceStr);
+		// } catch (Exception e) {
+		// errorString = "InsuranceOrg Price invalid! (must be number)";
+		// }
+
+		InsuranceOrg insuranceOrg = new InsuranceOrg(inn, ogrn, name, address);
+
+		// String regex = "\\w+";
+		// if (inn == 0 || !inn.matches(regex)) {
+		if (inn == 0) {
+			errorString = "InsuranceOrg INN invalid! (must be numeric > 0)";
 		}
 
 		if (errorString == null) {

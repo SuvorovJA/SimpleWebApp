@@ -41,7 +41,7 @@ public class InsuranceOrgsListServlet extends HttpServlet {
 		String errorString = null;
 		List<InsuranceOrg> list = null;
 		try {
-			list = UtilsDAO.queryInsuranceOrg(conn);
+			list = UtilsDAO.queryInsuranceOrgs(conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();

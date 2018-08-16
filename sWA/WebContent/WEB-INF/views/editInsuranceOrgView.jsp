@@ -19,19 +19,24 @@
 	<c:if test="${not empty insuranceOrg}">
 		<form method="POST"
 			action="${pageContext.request.contextPath}/editInsuranceOrg">
-			<input type="hidden" name="code" value="${insuranceOrg.code}" />
+			<input type="hidden" name="inn" value="${insuranceOrg.inn}" />
 			<table border="0">
 				<tr>
-					<td>Code</td>
-					<td style="color: red;">${insuranceOrg.code}</td>
+					<td>ИНН</td>
+					<td style="color: red;">${insuranceOrg.inn}</td>
 				</tr>
 				<tr>
-					<td>Name</td>
+					<td>ОГРН</td>
+					<td><input type="text" name="ogrn" value="${insuranceOrg.ogrn}" /></td>
+				</tr>
+				
+				<tr>
+					<td>Наименование</td>
 					<td><input type="text" name="name" value="${insuranceOrg.name}" /></td>
 				</tr>
 				<tr>
-					<td>Price</td>
-					<td><input type="text" name="price" value="${insuranceOrg.price}" /></td>
+					<td>Адрес</td>
+					<td><input type="text" name="address" value="${insuranceOrg.address}" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="Submit" /> <a

@@ -1,28 +1,30 @@
 package edu.sua.entities;
 
 public class InsuranceOrg {
-	private String code;
+	private long inn;
+	private long ogrn;
 	private String name;
-	private float price;
+	private String address;
 
 	public InsuranceOrg() {
 		// super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public InsuranceOrg(String code, String name, float price) {
+	public InsuranceOrg(long inn, long ogrn, String name, String address) {
 		// super();
-		this.code = code;
+		this.inn = inn;
 		this.name = name;
-		this.price = price;
+		this.address = address;
+		this.ogrn = ogrn;
 	}
 
-	public String getCode() {
-		return code;
+	public long getInn() {
+		return inn;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setInn(long inn) {
+		this.inn = inn;
 	}
 
 	public String getName() {
@@ -33,12 +35,22 @@ public class InsuranceOrg {
 		this.name = name;
 	}
 
-	public float getPrice() {
-		return price;
+	public long getOgrn() {
+		return ogrn;
 	}
 
-	public void setPrice(float price) {
-		this.price = price;
+	public void setOgrn(long ogrn) {
+		this.ogrn = ogrn;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
 
 }
