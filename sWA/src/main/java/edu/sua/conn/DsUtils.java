@@ -2,27 +2,26 @@ package edu.sua.conn;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
-
 import javax.naming.InitialContext;
+import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.flywaydb.core.Flyway;
+
 // 
-public class ConnUtils {
+public class DsUtils {
 
 	private static DataSource ds;
 
-	private static boolean initialised;
-
 	static {
-		initialised = false;
 		try {
 			InitialContext ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/sWA");
 			if (ds == null)
 				throw new SQLException("Unknown DataSource 'jdbc/sWA'");
+		} catch (NameNotFoundException e) {
+			e.printStackTrace(); // TODO how to stop webapp ?
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -30,17 +29,15 @@ public class ConnUtils {
 
 	// Connect to any DB configured in META-INF/context.xml
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
-		if (!initialised) {
-			h2dbInit();
-			initialised = true;
-		}
+		h2dbInit();
 		return ds.getConnection();
 	}
 
 	/*
 	 * инициализация встроенной Н2 базы данных, при расположении её в памяти (а при
 	 * старте такой СУБД память пуста, таблиц и данных нет). возможна параметром
-	 * ;INIT='~/script.sql', в котором указывается (полный)путь к скрипту с командами SQL.
+	 * ;INIT='~/script.sql', в котором указывается (полный)путь к скрипту с
+	 * командами SQL.
 	 * url="jdbc:h2:mem:sWA;DB_CLOSE_DELAY=-1;INIT=runscript from 'SQL.txt'" (это из
 	 * context.xml). однако при использовании в публикуемом приложении, и
 	 * использовании относительного пути, драйвер базы не находит скрипт нигде в
@@ -52,19 +49,9 @@ public class ConnUtils {
 	 */
 
 	private static void h2dbInit() throws SQLException {
-//		System.out.println(">>> h2dbInit();");
-		List<String> ddl = dbPopulate.getDdl();
-		List<String> dml = dbPopulate.getDml();
-		Connection c = ds.getConnection();
-		Statement s = c.createStatement();		
-		for (String sql : ddl) {
-			s.executeUpdate(sql);
-		}
-		for (String sql : dml) {
-			s.executeUpdate(sql);
-		}
-		s.close();
-		c.close(); // ?
+		Flyway flyway = new Flyway();
+		flyway.setDataSource(ds);
+		flyway.migrate();
 	}
 
 }

@@ -25,9 +25,6 @@
 		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/javatest"/> -->
 
 
-	<Parameter name="H2_SCRIPT_DIRECTORY"
-		value="WEB-INF/lib" override="false" />
-
 	<Resource name="jdbc/sWA" auth="Container"
 		type="javax.sql.DataSource" maxTotal="10" maxIdle="3"
 		maxWaitMillis="2000" username="sa" password=""
