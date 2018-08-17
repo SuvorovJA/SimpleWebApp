@@ -7,12 +7,9 @@ public class InsuranceOrg {
 	private String address;
 
 	public InsuranceOrg() {
-		// super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public InsuranceOrg(long inn, long ogrn, String name, String address) {
-		// super();
 		this.inn = inn;
 		this.name = name;
 		this.address = address;

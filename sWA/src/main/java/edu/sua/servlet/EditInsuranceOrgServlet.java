@@ -10,10 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import edu.sua.entities.InsuranceOrg;
-import edu.sua.entities.UserAccount;
 import edu.sua.utils.Utils;
 import edu.sua.utils.UtilsDAO;
 
@@ -38,16 +35,8 @@ public class EditInsuranceOrgServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Check User has logged on
-		HttpSession session = request.getSession();
-		UserAccount LoggedUser = Utils.getLoggedUser(session);
-		if (LoggedUser == null) {
-			response.sendRedirect(request.getContextPath() + "/login");
-			return;
-		}
-		
 		Connection conn = Utils.getStoredConnection(request);
-		long inn =  Long.valueOf((String) request.getParameter("inn")); //TODO validating need
+		long inn = Long.valueOf((String) request.getParameter("inn")); // TODO validating need
 		InsuranceOrg insuranceOrg = null;
 		String errorString = null;
 
@@ -58,7 +47,8 @@ public class EditInsuranceOrgServlet extends HttpServlet {
 			errorString = e.getMessage();
 		}
 
-		// If The InsuranceOrg does not exist to edit. Redirect to insuranceOrgsList page.
+		// If The InsuranceOrg does not exist to edit. Redirect to insuranceOrgsList
+		// page.
 		if (errorString != null && insuranceOrg == null) {
 			response.sendRedirect(request.getServletPath() + "/insuranceOrgsList");
 			return;
@@ -81,7 +71,7 @@ public class EditInsuranceOrgServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Connection conn = Utils.getStoredConnection(request);	
+		Connection conn = Utils.getStoredConnection(request);
 		String errorString = null;
 		long inn = 0, ogrn = 0;
 
@@ -98,7 +88,7 @@ public class EditInsuranceOrgServlet extends HttpServlet {
 		}
 		String name = (String) request.getParameter("name");
 		String address = (String) request.getParameter("address");
-		
+
 		InsuranceOrg insuranceOrg = new InsuranceOrg(inn, ogrn, name, address);
 
 		try {

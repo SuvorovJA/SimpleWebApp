@@ -15,7 +15,7 @@
 	<jsp:include page="_header.jsp"></jsp:include>
 	<jsp:include page="_menu.jsp"></jsp:include>
 
-	<h3>Информация о страховых организациях</h3>
+	<h3></h3>
 
 	<p style="color: red;">${errorString}</p>
 
@@ -52,7 +52,7 @@
 	</form>
 
 	<p>
-		<a href="createInsuranceOrg">Добавить страховую организацию</a>
+		<a href="createInsuranceOrg"><button type="button">Добавить страховую организацию</button></a>
 
 		<jsp:include page="_footer.jsp"></jsp:include>
 </body>

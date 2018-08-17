@@ -39,8 +39,8 @@
 					<td><input type="text" name="address" value="${insuranceOrg.address}" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="Submit" /> <a
-						href="${pageContext.request.contextPath}/insuranceOrgsList">Cancel</a></td>
+					<td colspan="2"><input type="submit" value="Отправить" /> <a
+						href="${pageContext.request.contextPath}/insuranceOrgsList"><button type="button">Отменить</button></a></td>
 				</tr>
 			</table>
 		</form>

@@ -32,7 +32,4 @@
 		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
 		url="jdbc:h2:mem:sWA;DB_CLOSE_DELAY=-1;" />
 
-	<!-- url="jdbc:h2:tcp://localhost/./sWA" --><!-- use for external tcp server db -->
-	<!-- INIT=runscript from 'SQL.txt' --><!-- this not work with relative path -->
-
 </Context>

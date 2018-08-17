@@ -51,11 +51,7 @@ public class JdbcFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 
-		//		ClassPathPrint.main(null);
-		//		System.out.println(">>> SysProperties.getScriptDirectory = " + SysProperties.getScriptDirectory());
-		
 		if (UtilsFilter.needJdbc(req)) {
-
 			Connection conn = null;
 			try {
 				conn = ConnectionUtils.getConnection(); // Create a Connection.
@@ -76,7 +72,6 @@ public class JdbcFilter implements Filter {
 			} catch (Exception e) {
 				e.printStackTrace();
 				sctx.log("JDBC Filter: some other exception");
-//				throw new ServletException();
 			} finally {
 				ConnectionUtils.closeQuietly(conn);
 			}

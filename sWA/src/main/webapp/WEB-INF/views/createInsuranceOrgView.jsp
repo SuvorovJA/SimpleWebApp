@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Сохранить" /> <a
-					href="insuranceOrgsList">Отмена</a></td>
+					href="insuranceOrgsList"><button type="button">Отменить</button></a></td>
 			</tr>
 		</table>
 	</form>

@@ -10,9 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import edu.sua.entities.UserAccount;
 import edu.sua.utils.Utils;
 import edu.sua.utils.UtilsDAO;
 
@@ -37,16 +35,8 @@ public class DeleteInsuranceOrgServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Check User has logged on
-		HttpSession session = request.getSession();
-		UserAccount LoggedUser = Utils.getLoggedUser(session);
-		if (LoggedUser == null) {
-			response.sendRedirect(request.getContextPath() + "/login");
-			return;
-		}
-		
 		Connection conn = Utils.getStoredConnection(request);
-		long inn =  Long.valueOf((String) request.getParameter("inn"));
+		long inn = Long.valueOf((String) request.getParameter("inn"));
 		String errorString = null;
 		try {
 			UtilsDAO.deleteInsuranceOrg(conn, inn);

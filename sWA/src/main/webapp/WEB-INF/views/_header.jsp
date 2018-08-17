@@ -6,7 +6,5 @@
 		<h1>Информация о страховых организациях</h1>
 	</div>
 	<div style="float: right; padding: 10px; text-align: right;">
-		Hello <b>${LoggedUser.userName}</b> <br /> Search <input
-			name="search">
 	</div>
 </div>
