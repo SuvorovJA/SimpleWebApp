@@ -3,6 +3,7 @@ package edu.sua.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -41,7 +42,7 @@ public class InsuranceOrgsListServlet extends HttpServlet {
 		String errorString = null;
 		List<InsuranceOrg> list = null;
 		try {
-			list = UtilsDAO.queryInsuranceOrgs(conn);
+			list = UtilsDAO.queryInsuranceOrgs(conn, this.applyFilter(request));
 		} catch (SQLException e) {
 			e.printStackTrace();
 			errorString = e.getMessage();
@@ -49,6 +50,11 @@ public class InsuranceOrgsListServlet extends HttpServlet {
 		// Store info in request attribute, before forward to views
 		request.setAttribute("errorString", errorString);
 		request.setAttribute("insuranceOrgsList", list);
+		// replay search fields
+		request.setAttribute("search_inn", request.getParameter("search_inn"));
+		request.setAttribute("search_ogrn", request.getParameter("search_ogrn"));
+		request.setAttribute("search_name", request.getParameter("search_name"));
+		request.setAttribute("search_address", request.getParameter("search_address"));
 
 		RequestDispatcher dispatcher = request.getServletContext()
 				.getRequestDispatcher("/WEB-INF/views/insuranceOrgsListView.jsp");
@@ -62,6 +68,21 @@ public class InsuranceOrgsListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
+	}
+
+	private String applyFilter(HttpServletRequest request) {
+		String result = "";
+		List<String> names = Collections.list(request.getParameterNames());
+		for (String n : names) {
+			if (!request.getParameter(n).isEmpty()) {
+				String ns = n.replace("search_", "");
+				result += ns + " LIKE '%" + request.getParameter(n) + "%' AND ";
+			}
+		}
+		if (result != "") {
+			result = result.substring(0, result.length() - 4);
+		}
+		return result;
 	}
 
 }

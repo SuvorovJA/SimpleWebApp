@@ -29,7 +29,7 @@ public class DsUtils {
 
 	// Connect to any DB configured in META-INF/context.xml
 	public static Connection getConnection() throws SQLException, ClassNotFoundException {
-		h2dbInit();
+		h2dbInit(); // TODO avoid exec init every html request
 		return ds.getConnection();
 	}
 

@@ -55,8 +55,11 @@ public class UtilsDAO {
 		return null;
 	}
 
-	public static List<InsuranceOrg> queryInsuranceOrgs(Connection conn) throws SQLException {
-		String sql = "Select a.Inn, a.Ogrn, a.Name, a.Address from Insurance_Orgs a ";
+	public static List<InsuranceOrg> queryInsuranceOrgs(Connection conn, String filter) throws SQLException {
+		String sql = "SELECT a.Inn, a.Ogrn, a.Name, a.Address FROM Insurance_Orgs a ";
+		if (filter != "") {
+			sql += " WHERE " + filter; 
+		} 
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		ResultSet rs = pstm.executeQuery();
@@ -79,7 +82,7 @@ public class UtilsDAO {
 	}
 
 	public static InsuranceOrg findInsuranceOrg(Connection conn, long inn) throws SQLException {
-		String sql = "Select a.Inn, a.Ogrn, a.Name, a.Address from Insurance_Orgs a where a.Inn=?";
+		String sql = "SELECT a.Inn, a.Ogrn, a.Name, a.Address FROM Insurance_Orgs a where a.Inn=?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setLong(1, inn);
@@ -97,7 +100,7 @@ public class UtilsDAO {
 	}
 
 	public static void updateInsuranceOrg(Connection conn, InsuranceOrg insuranceOrg) throws SQLException {
-		String sql = "Update Insurance_Orgs set Ogrn = ?, Name =?, Address=? where Inn=? ";
+		String sql = "UPDATE Insurance_Orgs set Ogrn = ?, Name =?, Address=? WHERE Inn=? ";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setLong(1, insuranceOrg.getOgrn());
@@ -108,7 +111,7 @@ public class UtilsDAO {
 	}
 
 	public static void insertInsuranceOrg(Connection conn, InsuranceOrg insuranceOrg) throws SQLException {
-		String sql = "Insert into Insurance_Orgs(Inn, Ogrn, Name, Address) values (?,?,?,?)";
+		String sql = "INSERT INTO Insurance_Orgs(Inn, Ogrn, Name, Address) VALUES (?,?,?,?)";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setLong(1, insuranceOrg.getInn());
@@ -119,7 +122,7 @@ public class UtilsDAO {
 	}
 
 	public static void deleteInsuranceOrg(Connection conn, long inn) throws SQLException {
-		String sql = "Delete From Insurance_Orgs where Inn= ?";
+		String sql = "DELETE FROM Insurance_Orgs WHERE Inn= ?";
 
 		PreparedStatement pstm = conn.prepareStatement(sql);
 		pstm.setLong(1, inn);
